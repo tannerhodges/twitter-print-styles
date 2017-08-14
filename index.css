@@ -1,0 +1,99 @@
+@media print {
+
+  html,
+  html body,
+  html #doc,
+  html #page-outer {
+    height: auto !important;
+  }
+
+  html body,
+  html .PermalinkOverlay {
+    background: none !important;
+  }
+
+  html .modal-enabled,
+  html .grid-enabled,
+  html .overlay-enabled,
+  html .gallery-enabled {
+    overflow: auto !important;
+  }
+
+  html #doc {
+    display: none !important;
+  }
+
+  /* Make modal static */
+  html .PermalinkOverlay {
+    position: relative !important;
+  }
+  html .PermalinkOverlay-modal {
+    border-radius: 0 !important;
+    min-height: initial !important;
+    margin-bottom: 0 !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+  }
+  html .permalink-container {
+    width: 100% !important;
+    max-width: 7in !important;
+    margin: 0 auto !important;
+    float: none !important;
+  }
+  html .ThreadedConversation {
+    margin-top: 0 !important;
+  }
+
+  /* Hide modal background */
+  html .PermalinkOverlay-with-background {
+    background: transparent !important;
+  }
+
+  /* Hide non-tweet content */
+  html #profile-hover-container,
+  html .follow-bar,
+  html .PermalinkProfile-dismiss,
+  html .ProfileTweet-actionButton,
+  html .ProfileTweet-actionList,
+  html .inline-reply-tweetbox,
+  html .Trends,
+  html .Footer {
+    display: none !important;
+  }
+
+  /* Let images expand to natural dimensions */
+  html .AdaptiveMedia {
+    max-height: none !important;
+  }
+  html .AdaptiveMedia-photoContainer {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  html .AdaptiveMedia [style*="padding"] {
+    padding-top: 0 !important;
+  }
+  html .AdaptiveMedia [style*="background"] {
+    background: none !important;
+  }
+  html .AdaptiveMedia img {
+    top: 0 !important;
+  }
+
+  /* Avoid page breaks in the middle of a tweet */
+  html .tweet {
+    page-break-inside: avoid !important;
+  }
+
+  /* Keep avatars on top of thread borders */
+  html .avatar {
+    position: relative !important;
+    z-index: 1000 !important;
+  }
+
+}
