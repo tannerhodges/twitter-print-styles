@@ -83,6 +83,9 @@
   }
   html .AdaptiveMedia img {
     top: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    max-height: 60vh !important;
   }
 
   /* Avoid page breaks in the middle of a tweet */
