@@ -1,6 +1,6 @@
 # Twitter Print Styles
 
-Chrome extension to improve Twitter print styles for saving threads as PDFs.
+Chrome extension for adding simple print styles to save Twitter threads as PDFs.
 
 ## Features
 
