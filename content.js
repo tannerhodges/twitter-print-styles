@@ -3,10 +3,10 @@
 // ------------------------------
 
 // Get timestamp
-var timestamp = document.querySelector('.client-and-actions .metadata');
+const timestamp = document.querySelector('.client-and-actions .metadata');
 
 // Add link to current URL
-var timestampLink = document.createElement('a');
+let timestampLink = document.createElement('a');
 timestampLink.href = window.location.href;
 timestamp.parentNode.appendChild(timestampLink);
 
@@ -20,8 +20,8 @@ timestampLink.appendChild(timestamp);
 // ------------------------------
 
 // 1. Scroll to the bottom of the page
-var modal = document.querySelector('.PermalinkOverlay');
-var timelineEnd = modal.querySelector('.timeline-end');
+const modal = document.querySelector('.PermalinkOverlay');
+const timelineEnd = modal.querySelector('.timeline-end');
 function scrollToBottom() {
   modal.scrollTop = modal.scrollHeight;
   if (timelineEnd.classList.contains('has-more-items')) {
@@ -32,9 +32,9 @@ function scrollToBottom() {
 }
 
 // 2. Load more replies
-var moreReplies;
+let moreReplies;
 function getMoreReplies() {
-  return [].filter.call(document.querySelectorAll('a, button'), function(link) {
+  return [].filter.call(document.querySelectorAll('a, button'), (link) => {
     return link.innerText.match(/\d more repl/);
   });
 }
@@ -42,12 +42,12 @@ function loadMoreReplies() {
   modal.scrollTop = modal.scrollHeight;
   moreReplies = getMoreReplies();
   if (moreReplies.length <= 0) { return false; }
-  moreReplies.map(function(link) { link.click(); });
+  moreReplies.map((link) => link.click());
   setTimeout(loadMoreReplies, 400);
 }
 
 // 3. Put it all together
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.message !== 'load_entire_thread') { return false; }
   scrollToBottom();
 });
