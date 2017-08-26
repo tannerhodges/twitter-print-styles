@@ -1,6 +1,6 @@
 {
   "name": "chrome-twitter-print-styles",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "git@github.com:tannerhodges/chrome-twitter-print-styles.git",
   "author": "Tanner Hodges <austintannerhodges@gmail.com>",
