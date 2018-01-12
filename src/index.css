@@ -65,6 +65,11 @@
     display: none !important;
   }
 
+  /* Hide promoted tweets */
+  html .suggested-tweet-stream-container {
+    display: none !important;
+  }
+
   /* Let images expand to natural dimensions */
   html .AdaptiveMedia {
     max-height: none !important;
