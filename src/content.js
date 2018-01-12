@@ -41,7 +41,13 @@ function getMoreReplies() {
 function loadMoreReplies() {
   modal.scrollTop = modal.scrollHeight;
   moreReplies = getMoreReplies();
-  if (moreReplies.length <= 0) { return false; }
+
+  // TODO: Wait until element transitions are complete, then print
+  if (moreReplies.length <= 0) {
+    window.print();
+    return false;
+  }
+
   moreReplies.map((link) => link.click());
   setTimeout(loadMoreReplies, 400);
 }
