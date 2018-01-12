@@ -1,5 +1,4 @@
 @media print {
-
   html,
   html body,
   html #doc,
@@ -28,16 +27,16 @@
     position: relative !important;
   }
   html .PermalinkOverlay-modal {
-    border-radius: 0 !important;
-    min-height: initial !important;
-    margin-bottom: 0 !important;
     position: relative !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
+    min-height: initial !important;
+    margin-bottom: 0 !important;
     margin-left: 0 !important;
     -webkit-transform: none !important;
     transform: none !important;
+    border-radius: 0 !important;
   }
   html .permalink-container {
     width: 100% !important;
@@ -79,24 +78,45 @@
     padding-top: 0 !important;
   }
   html .AdaptiveMedia [style*="background"] {
-    background: none !important;
+    background-color: transparent !important;
   }
   html .AdaptiveMedia img {
+    position: relative !important;
     top: 0 !important;
+    left: 0 !important;
     width: auto !important;
+    max-width: 100% !important;
     height: auto !important;
     max-height: 60vh !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Force full width images */
+  html .AdaptiveMedia-doublePhoto,
+  html .AdaptiveMedia-quadPhoto {
+    width: 100% !important;
+    height: auto !important;
+    font-size: 1rem !important;
+  }
+  html .AdaptiveMedia-thirdHeightPhotoContainer {
+    width: 100% !important;
+    height: auto !important;
+  }
+  html .AdaptiveMedia-halfWidthPhoto,
+  html .AdaptiveMedia-threeQuartersWidthPhoto,
+  html .AdaptiveMedia-thirdHeightPhoto {
+    width: 100% !important;
+    height: auto !important;
+    margin-right: 0 !important;
+  }
+
+  /* Hide play icons */
+  html .poster-play-icon {
+    display: none !important;
   }
 
   /* Avoid page breaks in the middle of a tweet */
   html .tweet {
     page-break-inside: avoid !important;
   }
-
-  /* Keep avatars on top of thread borders */
-  html .avatar {
-    position: relative !important;
-    z-index: 1000 !important;
-  }
-
 }
