@@ -10,8 +10,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-zip": "^4.0.0",
-    "stylelint-config-property-sort-order-smacss": "^1.1.2"
+    "gulp": "^4.0.2",
+    "gulp-zip": "^5.0.2",
+    "stylelint-config-property-sort-order-smacss": "^6.3.0"
   }
 }
