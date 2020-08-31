@@ -1,127 +1,134 @@
+/**
+ * Twitter Print Styles
+ *
+ * 1. Hide main menu.
+ * 2. Hide sidebar.
+ * 3. Hide modals/tooltips/popovers.
+ * 4. Center main content.
+ * 5. Make "Thread" header non-sticky.
+ * 6. Expand tweet images.
+ * 7. Hide extra video placeholders.
+ * 8. Reset video transformations.
+ * 9. Fix icon alignment for reply/retweet/like buttons.
+ * 10, Make infinite scrolling timeline static again.
+ * 11. Normalize tweet borders
+ * 12. Hide everything after the first set timeline content.
+ * 13. Add some breathing room to make tweets more readable.
+ * 14. Make sure nothing animates during print.
+ * 15. Avoid page breaks in the middle of tweets, images, and videos.
+ * 16. Revert Dark Mode.
+ */
 @media print {
-  html,
-  html body,
-  html #doc,
-  html #page-outer {
-    height: auto !important;
-  }
-
-  html body,
-  html .PermalinkOverlay {
-    background: none !important;
-  }
-
-  html .modal-enabled,
-  html .grid-enabled,
-  html .overlay-enabled,
-  html .gallery-enabled {
-    overflow: auto !important;
-  }
-
-  html #doc {
+  /* 1. Hide main menu. */
+  header[role="banner"] {
     display: none !important;
   }
 
-  /* Make modal static */
-  html .PermalinkOverlay {
+  /* 2. Hide sidebar. */
+  [data-testid="sidebarColumn"] {
+    display: none !important;
+  }
+
+  /* 3. Hide modals/tooltips/popovers. */
+  /* #layers [style*="left: "] {
+    display: none !important;
+  } */
+  #layers {
+    display: none !important;
+  }
+
+  /* 4. Center main content. */
+  main > :first-child {
+    width: 100% !important;
+  }
+
+  [data-testid="primaryColumn"] {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  /* 5. Make "Thread" header non-sticky. */
+  [data-testid="primaryColumn"] > :first-child > :first-child {
     position: relative !important;
   }
-  html .PermalinkOverlay-modal {
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    min-height: initial !important;
-    margin-bottom: 0 !important;
-    margin-left: 0 !important;
-    -webkit-transform: none !important;
+
+  /* 6. Expand tweet images. */
+  /* - Break everything out of their `position: absolute;` containers. */
+  [data-testid="tweet"] * {
+    position: static !important;
+  }
+  /* - Hide all the placeholder aspect ratio elements. */
+  [data-testid="tweet"] [style*="padding-bottom"] {
+    display: none !important;
+  }
+  /* - Ensure images are visible. */
+  [data-testid="tweet"] img {
+    opacity: 1 !important;
+  }
+  /* - Prevent photos overflowing the content area. */
+  [data-testid="tweetPhoto"] {
+    margin: 0 !important;
+  }
+
+  /* 7. Hide extra video placeholders. */
+  [data-testid="videoPlayer"] [role="button"] {
+    display: none !important;
+  }
+
+  /* 8. Reset video transformations. */
+  [data-testid="videoPlayer"] video {
     transform: none !important;
-    border-radius: 0 !important;
-  }
-  html .permalink-container {
-    width: 100% !important;
-    max-width: 7in !important;
-    margin: 0 auto !important;
-    float: none !important;
-  }
-  html .ThreadedConversation {
-    margin-top: 0 !important;
   }
 
-  /* Hide modal background */
-  html .PermalinkOverlay-with-background {
-    background: transparent !important;
-  }
-
-  /* Hide non-tweet content */
-  html #profile-hover-container,
-  html .follow-bar,
-  html .PermalinkProfile-dismiss,
-  html .ProfileTweet-actionButton,
-  html .ProfileTweet-actionList,
-  html .inline-reply-tweetbox,
-  html .Trends,
-  html .Footer {
+  /* 9. Fix icon alignment for reply/retweet/like buttons. */
+  [data-testid="tweet"] [role="group"]:last-child [role="button"] > :first-child > :first-child > :first-child {
     display: none !important;
   }
 
-  /* Hide promoted tweets */
-  html .suggested-tweet-stream-container {
-    display: none !important;
+  /* 10, Make infinite scrolling timeline static again. */
+  [aria-label*="Timeline"] > :first-child {
+    min-height: 0 !important;
   }
 
-  /* Let images expand to natural dimensions */
-  html .AdaptiveMedia {
-    max-height: none !important;
-  }
-  html .AdaptiveMedia-photoContainer {
+  [aria-label*="Timeline"] > :first-child > * {
     position: relative !important;
-    width: 100% !important;
-    height: auto !important;
+    transform: none !important;
   }
-  html .AdaptiveMedia [style*="padding"] {
-    padding-top: 0 !important;
+
+  /* 11. Normalize tweet borders */
+  [aria-label*="Timeline"] > :first-child > div > div {
+    border-top: 0 !important;
+    border-bottom: 1px solid black !important;
   }
-  html .AdaptiveMedia [style*="background"] {
+
+  /* 12. Hide everything after the first set timeline content. */
+  /* NOTE: This allows us to easily swap out our duplicate and the original content. */
+  [aria-label*="Timeline"] > :first-child ~ * {
+    display: none !important;
+  }
+
+  /* 13. Add some breathing room to make tweets more readable. */
+  article {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  /* 14. Make sure nothing animates during print. */
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* 15. Avoid page breaks in the middle of tweets, images, and videos. */
+  article,
+  img,
+  video {
+    page-break-inside: avoid !important;
+  }
+
+  /* 16. Revert Dark Mode. */
+  *:not(a) {
     background-color: transparent !important;
-  }
-  html .AdaptiveMedia img {
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: auto !important;
-    max-width: 100% !important;
-    height: auto !important;
-    max-height: 60vh !important;
-    page-break-inside: avoid !important;
-  }
-
-  /* Force full width images */
-  html .AdaptiveMedia-doublePhoto,
-  html .AdaptiveMedia-quadPhoto {
-    width: 100% !important;
-    height: auto !important;
-    font-size: 1rem !important;
-  }
-  html .AdaptiveMedia-thirdHeightPhotoContainer {
-    width: 100% !important;
-    height: auto !important;
-  }
-  html .AdaptiveMedia-halfWidthPhoto,
-  html .AdaptiveMedia-threeQuartersWidthPhoto,
-  html .AdaptiveMedia-thirdHeightPhoto {
-    width: 100% !important;
-    height: auto !important;
-    margin-right: 0 !important;
-  }
-
-  /* Hide play icons */
-  html .poster-play-icon {
-    display: none !important;
-  }
-
-  /* Avoid page breaks in the middle of a tweet */
-  html .tweet {
-    page-break-inside: avoid !important;
+    color: black !important;
   }
 }
