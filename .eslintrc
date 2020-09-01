@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "plugin:cypress/recommended",
+    "eslint-config-airbnb-base"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "globals": {
+    "chrome"
+  },
+  "rules": {
+    "arrow-body-style": "off",
+    "class-methods-use-this": "off",
+    "no-alert": "off",
+    "no-await-in-loop": "off",
+    "no-console": "off",
+    "no-loop-func": "off",
+    "no-param-reassign": "off",
+    "no-return-assign": "off",
+    "no-underscore-dangle": "off",
+    "object-curly-newline": "off",
+    "prefer-destructuring": "off",
+    "prefer-template": "off"
+  }
+}

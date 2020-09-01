@@ -1,17 +1,38 @@
 {
   "name": "chrome-twitter-print-styles",
-  "version": "1.0.2",
-  "main": "index.js",
-  "repository": "git@github.com:tannerhodges/chrome-twitter-print-styles.git",
-  "author": {
-    "name": "Tanner Hodges",
-    "email": "austintannerhodges@gmail.com",
-    "url": "https://tannerhodges.com"
+  "version": "2.0.0",
+  "description": "Chrome extension for adding simple print styles to save Twitter threads as PDFs.",
+  "keywords": [
+    "chrome",
+    "extension",
+    "twitter",
+    "print",
+    "css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tannerhodges/chrome-twitter-print-styles.git"
   },
-  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "gulp"
+  },
+  "bugs": {
+    "url": "https://github.com/tannerhodges/chrome-twitter-print-styles/issues"
+  },
+  "homepage": "https://github.com/tannerhodges/chrome-twitter-print-styles#readme",
   "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-zip": "^4.0.0",
-    "stylelint-config-property-sort-order-smacss": "^1.1.2"
-  }
+    "gulp": "^4.0.2",
+    "gulp-zip": "^5.0.2",
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-cypress": "^2.11.1",
+    "eslint-plugin-import": "^2.22.0",
+    "stylelint": "^13.6.1",
+    "stylelint-config-property-sort-order-smacss": "^6.3.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0"
+  },
+  "author": "Tanner Hodges <me@tannerhodges.com>",
+  "license": "MIT"
 }
