@@ -49,18 +49,30 @@
 }
 
 /* 6. Expand tweet images. */
+/* - Make sure inline images display instead of background images. */
+#twitter-print-styles [style*="background-image: url("] {
+  display: none !important;
+}
+
+#twitter-print-styles img {
+  opacity: 1 !important;
+}
+
 /* - Break everything out of their `position: absolute;` containers. */
 #twitter-print-styles [data-testid="tweet"] * {
   position: static !important;
 }
+
 /* - Hide all the placeholder aspect ratio elements. */
 #twitter-print-styles [data-testid="tweet"] [style*="padding-bottom"] {
   display: none !important;
 }
+
 /* - Ensure images are visible. */
 #twitter-print-styles [data-testid="tweet"] img {
   opacity: 1 !important;
 }
+
 /* - Prevent photos overflowing the content area. */
 #twitter-print-styles [data-testid="tweetPhoto"] {
   margin: 0 !important;
