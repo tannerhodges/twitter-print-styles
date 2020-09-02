@@ -21,6 +21,7 @@ Chrome extension for adding simple print styles to save Twitter threads as PDFs.
 
 ## 👀 Alternatives
 
-- https://threadreaderapp.com
+- [JikJi for Twitter Threads](https://jikji.pro)
+- [Thread Reader](https://threadreaderapp.com)
 
 ## 📝 [Changelog](changelog.md)
