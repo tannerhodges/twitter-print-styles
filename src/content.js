@@ -101,6 +101,28 @@ function getTimestampElement(tweet) {
     .pop();
 }
 
+/**
+ * Get all CSS from all stylesheets in a document.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/StyleSheetList
+ * @param  {Element}  doc
+ * @return {Boolean}
+ */
+function getAllCSS(doc = document) {
+  return [...doc.styleSheets]
+    .map(styleSheet => {
+      try {
+        return [...styleSheet.cssRules]
+          .map(rule => rule.cssText)
+          .join('');
+      } catch (e) {
+        console.log('Access to stylesheet %s is denied. Ignoring...', styleSheet.href);
+      }
+    })
+    .filter(Boolean)
+    .join('\n');
+}
+
 // ------------------------------
 // PRINT TWEETS
 // ------------------------------
@@ -269,21 +291,33 @@ https://github.com/tannerhodges/chrome-twitter-print-styles/issues`);
 
   console.log('PRINT');
 
-  // Create a duplicate timeline with all of the tweets together,
-  // then hide the standard app so we can print everything at once.
-  const duplicate = document.createElement('div');
-  duplicate.id = 'twitter-print-styles';
-  duplicate.innerHTML = printHTML;
-  timeline.insertBefore(duplicate, container);
-  container.style.display = 'none';
+  // Copy the Twitter timeline into a new window.
+  const clone = document.querySelector('[data-testid="primaryColumn"]').cloneNode(true);
+  clone.querySelector('[aria-label*="Timeline"]').innerHTML = `<div>${printHTML}</div>`;
+
+  // TODO: Max title length.
+  const winHtml = `<!DOCTYPE html><html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+      <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E %3Cstyle%3E@media (prefers-color-scheme: dark) %7B path %7B fill: %23fff; %7D %7D%3C/style%3E %3Cpath d='M150 0a150 150 0 1 0 150 150A150 150 0 0 0 150 0zm70.013 114.075c.075 1.5.075 3.075.075 4.65 0 47.775-36.375 102.9-102.9 102.9a100.76 100.76 0 0 1-55.275-16.35 65.763 65.763 0 0 0 8.625.525 72.7 72.7 0 0 0 44.925-15.45 36.11 36.11 0 0 1-33.75-25.125 34.528 34.528 0 0 0 6.825.675 36.052 36.052 0 0 0 9.525-1.275 36.2 36.2 0 0 1-29.026-35.475v-.45a35.525 35.525 0 0 0 16.35 4.5 36.148 36.148 0 0 1-11.25-48.225 102.6 102.6 0 0 0 74.55 37.8 33.143 33.143 0 0 1-.975-8.25 36.186 36.186 0 0 1 62.55-24.75A73.234 73.234 0 0 0 233.212 81a36.144 36.144 0 0 1-15.9 20.025 73.4 73.4 0 0 0 20.775-5.7 74.091 74.091 0 0 1-18.074 18.75z'%3E%3C/path%3E %3C/svg%3E">
+      <title>${document.title}</title>
+      <style>${getAllCSS(document)}</style>
+      <!-- TODO: Automatically pull custom CSS. -->
+      <style>#twitter-print-styles header[role=banner]{display:none!important}#twitter-print-styles [data-testid=sidebarColumn]{display:none!important}#twitter-print-styles #layers{display:none!important}#twitter-print-styles [data-testid=primaryColumn]{margin-right:auto!important;margin-left:auto!important}#twitter-print-styles [data-testid=primaryColumn]>:first-child>:first-child{position:relative!important}#twitter-print-styles [data-testid=tweet] *{position:static!important}#twitter-print-styles [data-testid=tweet] [style*=padding-bottom]{display:none!important}#twitter-print-styles [data-testid=tweet] img{opacity:1!important}#twitter-print-styles [data-testid=tweetPhoto]{margin:0!important}#twitter-print-styles [data-testid=videoPlayer] [role=button]{display:none!important}#twitter-print-styles [data-testid=videoPlayer] video{transform:none!important}#twitter-print-styles [data-testid=tweet] [role=group]:last-child [role=button]>:first-child>:first-child>:first-child{display:none!important}#twitter-print-styles [aria-label*=Timeline]>:first-child{min-height:0!important}#twitter-print-styles [aria-label*=Timeline]>:first-child>*{position:relative!important;transform:none!important}#twitter-print-styles>:first-child>:first-child{border-top:1px solid #000!important}#twitter-print-styles [aria-label*=Timeline]>:first-child>div>div{border-top:0!important;border-bottom:1px solid #000!important}#twitter-print-styles [aria-label*=Timeline]>:first-child~*{display:none!important}#twitter-print-styles article{padding-top:1rem!important;padding-bottom:1rem!important}#twitter-print-styles *{transition:none!important;animation:none!important}#twitter-print-styles article,#twitter-print-styles img,#twitter-print-styles video{page-break-inside:avoid!important}#twitter-print-styles :not(a){background-color:transparent!important;color:#000!important}</style>
+    </head>
+    <body id="twitter-print-styles">
+      ${clone.outerHTML}
+    </body>
+  </html>`;
+
+  const winUrl = URL.createObjectURL(new Blob([winHtml], { type: 'text/html' }));
+
+  const win = window.open(winUrl);
 
   // Wait one more time, just to be sure _all_ our media is ready.
-  await mediaLoaded(duplicate);
+  await mediaLoaded(win.document.querySelector('body'));
 
   // Annnd print!
-  window.print();
-
-  // Once that's done, revert back so we don't break the app.
-  container.style.display = '';
-  timeline.removeChild(duplicate);
+  win.print();
 });

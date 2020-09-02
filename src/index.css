@@ -18,117 +18,116 @@
  * 15. Avoid page breaks in the middle of tweets, images, and videos.
  * 16. Revert Dark Mode.
  */
-@media print {
-  /* 1. Hide main menu. */
-  header[role="banner"] {
-    display: none !important;
-  }
+/* 1. Hide main menu. */
+#twitter-print-styles header[role="banner"] {
+  display: none !important;
+}
 
-  /* 2. Hide sidebar. */
-  [data-testid="sidebarColumn"] {
-    display: none !important;
-  }
+/* 2. Hide sidebar. */
+#twitter-print-styles [data-testid="sidebarColumn"] {
+  display: none !important;
+}
 
-  /* 3. Hide modals/tooltips/popovers. */
-  /* #layers [style*="left: "] {
-    display: none !important;
-  } */
-  #layers {
-    display: none !important;
-  }
+/* 3. Hide modals/tooltips/popovers. */
+#twitter-print-styles #layers {
+  display: none !important;
+}
 
-  /* 4. Center main content. */
-  main > :first-child {
-    width: 100% !important;
-  }
+/* 4. Center main content. */
+/* #twitter-print-styles main > :first-child {
+  width: 100% !important;
+} */
 
-  [data-testid="primaryColumn"] {
-    margin-right: auto !important;
-    margin-left: auto !important;
-  }
+#twitter-print-styles [data-testid="primaryColumn"] {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
 
-  /* 5. Make "Thread" header non-sticky. */
-  [data-testid="primaryColumn"] > :first-child > :first-child {
-    position: relative !important;
-  }
+/* 5. Make "Thread" header non-sticky. */
+#twitter-print-styles [data-testid="primaryColumn"] > :first-child > :first-child {
+  position: relative !important;
+}
 
-  /* 6. Expand tweet images. */
-  /* - Break everything out of their `position: absolute;` containers. */
-  [data-testid="tweet"] * {
-    position: static !important;
-  }
-  /* - Hide all the placeholder aspect ratio elements. */
-  [data-testid="tweet"] [style*="padding-bottom"] {
-    display: none !important;
-  }
-  /* - Ensure images are visible. */
-  [data-testid="tweet"] img {
-    opacity: 1 !important;
-  }
-  /* - Prevent photos overflowing the content area. */
-  [data-testid="tweetPhoto"] {
-    margin: 0 !important;
-  }
+/* 6. Expand tweet images. */
+/* - Break everything out of their `position: absolute;` containers. */
+#twitter-print-styles [data-testid="tweet"] * {
+  position: static !important;
+}
+/* - Hide all the placeholder aspect ratio elements. */
+#twitter-print-styles [data-testid="tweet"] [style*="padding-bottom"] {
+  display: none !important;
+}
+/* - Ensure images are visible. */
+#twitter-print-styles [data-testid="tweet"] img {
+  opacity: 1 !important;
+}
+/* - Prevent photos overflowing the content area. */
+#twitter-print-styles [data-testid="tweetPhoto"] {
+  margin: 0 !important;
+}
 
-  /* 7. Hide extra video placeholders. */
-  [data-testid="videoPlayer"] [role="button"] {
-    display: none !important;
-  }
+/* 7. Hide extra video placeholders. */
+#twitter-print-styles [data-testid="videoPlayer"] [role="button"] {
+  display: none !important;
+}
 
-  /* 8. Reset video transformations. */
-  [data-testid="videoPlayer"] video {
-    transform: none !important;
-  }
+/* 8. Reset video transformations. */
+#twitter-print-styles [data-testid="videoPlayer"] video {
+  transform: none !important;
+}
 
-  /* 9. Fix icon alignment for reply/retweet/like buttons. */
-  [data-testid="tweet"] [role="group"]:last-child [role="button"] > :first-child > :first-child > :first-child {
-    display: none !important;
-  }
+/* 9. Fix icon alignment for reply/retweet/like buttons. */
+#twitter-print-styles [data-testid="tweet"] [role="group"]:last-child [role="button"] > :first-child > :first-child > :first-child {
+  display: none !important;
+}
 
-  /* 10, Make infinite scrolling timeline static again. */
-  [aria-label*="Timeline"] > :first-child {
-    min-height: 0 !important;
-  }
+/* 10, Make infinite scrolling timeline static again. */
+#twitter-print-styles [aria-label*="Timeline"] > :first-child {
+  min-height: 0 !important;
+}
 
-  [aria-label*="Timeline"] > :first-child > * {
-    position: relative !important;
-    transform: none !important;
-  }
+#twitter-print-styles [aria-label*="Timeline"] > :first-child > * {
+  position: relative !important;
+  transform: none !important;
+}
 
-  /* 11. Normalize tweet borders */
-  [aria-label*="Timeline"] > :first-child > div > div {
-    border-top: 0 !important;
-    border-bottom: 1px solid black !important;
-  }
+/* 11. Normalize tweet borders */
+#twitter-print-styles > :first-child > :first-child {
+  border-top: 1px solid black !important;
+}
 
-  /* 12. Hide everything after the first set timeline content. */
-  /* NOTE: This allows us to easily swap out our duplicate and the original content. */
-  [aria-label*="Timeline"] > :first-child ~ * {
-    display: none !important;
-  }
+#twitter-print-styles [aria-label*="Timeline"] > :first-child > div > div {
+  border-top: 0 !important;
+  border-bottom: 1px solid black !important;
+}
 
-  /* 13. Add some breathing room to make tweets more readable. */
-  article {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-  }
+/* 12. Hide everything after the first set timeline content. */
+/* NOTE: This allows us to easily swap out our duplicate and the original content. */
+#twitter-print-styles [aria-label*="Timeline"] > :first-child ~ * {
+  display: none !important;
+}
 
-  /* 14. Make sure nothing animates during print. */
-  * {
-    transition: none !important;
-    animation: none !important;
-  }
+/* 13. Add some breathing room to make tweets more readable. */
+#twitter-print-styles article {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
 
-  /* 15. Avoid page breaks in the middle of tweets, images, and videos. */
-  article,
-  img,
-  video {
-    page-break-inside: avoid !important;
-  }
+/* 14. Make sure nothing animates during print. */
+#twitter-print-styles * {
+  transition: none !important;
+  animation: none !important;
+}
 
-  /* 16. Revert Dark Mode. */
-  *:not(a) {
-    background-color: transparent !important;
-    color: black !important;
-  }
+/* 15. Avoid page breaks in the middle of tweets, images, and videos. */
+#twitter-print-styles article,
+#twitter-print-styles img,
+#twitter-print-styles video {
+  page-break-inside: avoid !important;
+}
+
+/* 16. Revert Dark Mode. */
+#twitter-print-styles *:not(a) {
+  background-color: transparent !important;
+  color: black !important;
 }
