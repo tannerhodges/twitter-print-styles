@@ -15,7 +15,7 @@
  * 12. Hide everything after the first set timeline content.
  * 13. Add some breathing room to make tweets more readable.
  * 14. Make sure nothing animates during print.
- * 15. Avoid page breaks in the middle of tweets, images, and videos.
+ * 15. Try to fit media within the page.
  * 16. Revert Dark Mode.
  */
 
@@ -134,11 +134,12 @@ article {
   animation: none !important;
 }
 
-/* 15. Avoid page breaks in the middle of tweets, images, and videos. */
-article,
-img,
-video {
-  page-break-inside: avoid !important;
+/* 15. Try to fit media within the page. */
+video,
+img {
+  max-height: 50vh;
+  object-fit: contain;
+  page-break-inside: avoid;
 }
 
 /* 16. Revert Dark Mode. */
