@@ -92,12 +92,15 @@ function isMoreReplies(tweet) {
 /**
  * Get the timestamp element in a tweet.
  *
+ * Assumes that Twitter will always show time in a `#:#` format,
+ * followed by a middle dot `·` character.
+ *
  * @param  {Element}  tweet
  * @return {Boolean}
  */
 function getTimestampElement(tweet) {
   return Array.from(tweet.querySelectorAll('*'))
-    .filter((el) => el.textContent.trim().match(/^\d+:\d+ \w+\b/) && el.children.length <= 0)
+    .filter((el) => el.textContent.trim().match(/\b\d+:\d+\b.*·/) && el.children.length <= 0)
     .pop();
 }
 
