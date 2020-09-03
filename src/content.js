@@ -239,6 +239,12 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
     // Scroll tweet to the top of the screen (to trigger Twitter's "load more" action).
     tweet.scrollIntoView(true);
 
+    // Wait 50ms per tweet to help reduce the risk of hitting Twitter's rate limits.
+    // 900 requests per 15 minutes = 1 request per second, and if you go too fast...
+    // "Sorry, you are rate limited. Please wait a few moments then try again."
+    // @see https://developer.twitter.com/en/docs/twitter-api/rate-limits
+    await (new Promise((resolve) => setTimeout(resolve, 50)));
+
     // Wait until next tweet loads.
     const timeout = Date.now();
 
@@ -256,9 +262,9 @@ We're incredibly sorry for the inconvenience.
 
 A few things to double check before trying again:
 
-- Is your internet connection still working?
-- Have you tried refreshing the page?
-- Are you trying to print something other than a "Tweet" or "Thread"?
+1. Is your internet connection still working? It's a simple thing, but always good to double check.
+2. Are you trying to print something other than a "Tweet" or "Thread"? We only support "conversation timelines", so if you're Twitter Print Styles on, say, the Home screen you may run into issues.
+3. Did you get a "Sorry, you are rate limited" warning? Twitter limits you to 900 requests every 15 minutes, so you may just need to wait it out. (This can happen after printing a few long threads).
 
 If you've confirmed all these things and are still seeing this error message, please open an issue in our GitHub repo:
 
