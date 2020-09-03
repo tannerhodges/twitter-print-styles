@@ -97,7 +97,7 @@ function isMoreReplies(tweet) {
  */
 function getTimestampElement(tweet) {
   return Array.from(tweet.querySelectorAll('*'))
-    .filter((el) => el.textContent.trim().match(/^\d+:\d+ (A|P)M\b/) && el.children.length <= 0)
+    .filter((el) => el.textContent.trim().match(/^\d+:\d+ \w+\b/) && el.children.length <= 0)
     .pop();
 }
 
