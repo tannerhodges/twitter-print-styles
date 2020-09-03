@@ -174,7 +174,7 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
   // Get the timeline.
   // NOTE: While several views have "Timelines", this is
   // only expected to work on _Tweets_ & _Threads_.
-  const timeline = document.querySelector('[aria-label*="Timeline"]');
+  const timeline = document.querySelector('[data-testid="primaryColumn"] [role="region"] > div');
 
   if (!timeline) {
     console.log('Could not find Twitter timeline.');
@@ -308,7 +308,7 @@ https://github.com/tannerhodges/chrome-twitter-print-styles/issues`);
 
   // Copy the Twitter timeline into a new window.
   const clone = document.querySelector('[data-testid="primaryColumn"]').cloneNode(true);
-  clone.querySelector('[aria-label*="Timeline"]').innerHTML = `<div>${printHTML}</div>`;
+  clone.querySelector('[data-testid="primaryColumn"] [role="region"] > div').innerHTML = `<div>${printHTML}</div>`;
 
   const winHtml = `<!DOCTYPE html><html>
     <head>

@@ -97,28 +97,28 @@ img {
 }
 
 /* 10, Make infinite scrolling timeline static again. */
-[aria-label*="Timeline"] > :first-child {
+[data-testid="primaryColumn"] [role="region"] > div > :first-child {
   min-height: 0 !important;
 }
 
-[aria-label*="Timeline"] > :first-child > * {
+[data-testid="primaryColumn"] [role="region"] > div > :first-child > * {
   position: relative !important;
   transform: none !important;
 }
 
 /* 11. Normalize tweet borders */
-> :first-child > :first-child {
+[data-testid="primaryColumn"] > :first-child {
   border-top: 1px solid black !important;
 }
 
-[aria-label*="Timeline"] > :first-child > div > div {
+[data-testid="primaryColumn"] [role="region"] > div > :first-child > div > div {
   border-top: 0 !important;
   border-bottom: 1px solid black !important;
 }
 
 /* 12. Hide everything after the first set timeline content. */
 /* NOTE: This allows us to easily swap out our duplicate and the original content. */
-[aria-label*="Timeline"] > :first-child ~ * {
+[data-testid="primaryColumn"] [role="region"] > div > :first-child ~ * {
   display: none !important;
 }
 
