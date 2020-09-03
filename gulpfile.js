@@ -63,7 +63,7 @@ function zipTask() {
 exports.zip = zipTask;
 
 // Tasks
-exports.default = series(copy, css, js);
+exports.default = series(copy, css, js, zipTask);
 
 // Watch
-exports.watch = () => watch('src/*', exports.default);
+exports.watch = () => watch('src/*', series(copy, css, js));
