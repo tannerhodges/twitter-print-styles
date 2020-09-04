@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## 2.1.0 - 2020-09-03
+## [2.1.0] - 2020-09-03
 
 ### Added
 
@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 🙈 Fix background images not showing up on print.
 - ⏰ Fix timestamp element not matching in other languages.
 
-## 2.0.0 - 2020-08-31
+## [2.0.0] - 2020-08-31
 
 ### Changed
 
@@ -36,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update `package.json` (and remove yarn).
 - Update linters and formatters (stylelint, eslint, editorconfig).
 
-## 1.0.0 - 2018-01-12
+## [1.0.0] - 2018-01-12
 
 ### Added
 
