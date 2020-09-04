@@ -15,120 +15,137 @@
  * 12. Hide everything after the first set timeline content.
  * 13. Add some breathing room to make tweets more readable.
  * 14. Make sure nothing animates during print.
- * 15. Avoid page breaks in the middle of tweets, images, and videos.
+ * 15. Try to fit media within the page.
  * 16. Revert Dark Mode.
  */
-@media print {
-  /* 1. Hide main menu. */
-  header[role="banner"] {
-    display: none !important;
-  }
 
-  /* 2. Hide sidebar. */
-  [data-testid="sidebarColumn"] {
-    display: none !important;
-  }
+/* BEGIN */
 
-  /* 3. Hide modals/tooltips/popovers. */
-  /* #layers [style*="left: "] {
-    display: none !important;
-  } */
-  #layers {
-    display: none !important;
-  }
-
-  /* 4. Center main content. */
-  main > :first-child {
-    width: 100% !important;
-  }
-
-  [data-testid="primaryColumn"] {
-    margin-right: auto !important;
-    margin-left: auto !important;
-  }
-
-  /* 5. Make "Thread" header non-sticky. */
-  [data-testid="primaryColumn"] > :first-child > :first-child {
-    position: relative !important;
-  }
-
-  /* 6. Expand tweet images. */
-  /* - Break everything out of their `position: absolute;` containers. */
-  [data-testid="tweet"] * {
-    position: static !important;
-  }
-  /* - Hide all the placeholder aspect ratio elements. */
-  [data-testid="tweet"] [style*="padding-bottom"] {
-    display: none !important;
-  }
-  /* - Ensure images are visible. */
-  [data-testid="tweet"] img {
-    opacity: 1 !important;
-  }
-  /* - Prevent photos overflowing the content area. */
-  [data-testid="tweetPhoto"] {
-    margin: 0 !important;
-  }
-
-  /* 7. Hide extra video placeholders. */
-  [data-testid="videoPlayer"] [role="button"] {
-    display: none !important;
-  }
-
-  /* 8. Reset video transformations. */
-  [data-testid="videoPlayer"] video {
-    transform: none !important;
-  }
-
-  /* 9. Fix icon alignment for reply/retweet/like buttons. */
-  [data-testid="tweet"] [role="group"]:last-child [role="button"] > :first-child > :first-child > :first-child {
-    display: none !important;
-  }
-
-  /* 10, Make infinite scrolling timeline static again. */
-  [aria-label*="Timeline"] > :first-child {
-    min-height: 0 !important;
-  }
-
-  [aria-label*="Timeline"] > :first-child > * {
-    position: relative !important;
-    transform: none !important;
-  }
-
-  /* 11. Normalize tweet borders */
-  [aria-label*="Timeline"] > :first-child > div > div {
-    border-top: 0 !important;
-    border-bottom: 1px solid black !important;
-  }
-
-  /* 12. Hide everything after the first set timeline content. */
-  /* NOTE: This allows us to easily swap out our duplicate and the original content. */
-  [aria-label*="Timeline"] > :first-child ~ * {
-    display: none !important;
-  }
-
-  /* 13. Add some breathing room to make tweets more readable. */
-  article {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-  }
-
-  /* 14. Make sure nothing animates during print. */
-  * {
-    transition: none !important;
-    animation: none !important;
-  }
-
-  /* 15. Avoid page breaks in the middle of tweets, images, and videos. */
-  article,
-  img,
-  video {
-    page-break-inside: avoid !important;
-  }
-
-  /* 16. Revert Dark Mode. */
-  *:not(a) {
-    background-color: transparent !important;
-    color: black !important;
-  }
+/* 1. Hide main menu. */
+header[role="banner"] {
+  display: none !important;
 }
+
+/* 2. Hide sidebar. */
+[data-testid="sidebarColumn"] {
+  display: none !important;
+}
+
+/* 3. Hide modals/tooltips/popovers. */
+#layers {
+  display: none !important;
+}
+
+/* 4. Center main content. */
+/* main > :first-child {
+  width: 100% !important;
+} */
+
+[data-testid="primaryColumn"] {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+/* 5. Make "Thread" header non-sticky. */
+[data-testid="primaryColumn"] > :first-child > :first-child {
+  position: relative !important;
+}
+
+/* 6. Expand tweet images. */
+/* - Make sure inline images display instead of background images. */
+[style*="background-image: url("] {
+  display: none !important;
+}
+
+img {
+  opacity: 1 !important;
+}
+
+/* - Break everything out of their `position: absolute;` containers. */
+[data-testid="tweet"] * {
+  position: static !important;
+}
+
+/* - Hide all the placeholder aspect ratio elements. */
+[data-testid="tweet"] [style*="padding-bottom"] {
+  display: none !important;
+}
+
+/* - Ensure images are visible. */
+[data-testid="tweet"] img {
+  opacity: 1 !important;
+}
+
+/* - Prevent photos overflowing the content area. */
+[data-testid="tweetPhoto"] {
+  margin: 0 !important;
+}
+
+/* 7. Hide extra video placeholders. */
+[data-testid="videoPlayer"] [role="button"] {
+  display: none !important;
+}
+
+/* 8. Reset video transformations. */
+[data-testid="videoPlayer"] video {
+  transform: none !important;
+}
+
+/* 9. Fix icon alignment for reply/retweet/like buttons. */
+[data-testid="tweet"] [role="group"]:last-child [role="button"] > :first-child > :first-child > :first-child {
+  display: none !important;
+}
+
+/* 10, Make infinite scrolling timeline static again. */
+[data-testid="primaryColumn"] [role="region"] > div > :first-child {
+  min-height: 0 !important;
+}
+
+[data-testid="primaryColumn"] [role="region"] > div > :first-child > * {
+  position: relative !important;
+  transform: none !important;
+}
+
+/* 11. Normalize tweet borders */
+[data-testid="primaryColumn"] > :first-child {
+  border-top: 1px solid black !important;
+}
+
+[data-testid="primaryColumn"] [role="region"] > div > :first-child > div > div {
+  border-top: 0 !important;
+  border-bottom: 1px solid black !important;
+}
+
+/* 12. Hide everything after the first set timeline content. */
+/* NOTE: This allows us to easily swap out our duplicate and the original content. */
+[data-testid="primaryColumn"] [role="region"] > div > :first-child ~ * {
+  display: none !important;
+}
+
+/* 13. Add some breathing room to make tweets more readable. */
+article {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+/* 14. Make sure nothing animates during print. */
+* {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 15. Try to fit media within the page. */
+video,
+img {
+  max-height: 50vh;
+  object-fit: contain;
+  page-break-inside: avoid;
+}
+
+/* 16. Revert Dark Mode. */
+*:not(a) {
+  background-color: transparent !important;
+  color: black !important;
+}
+
+/* END */

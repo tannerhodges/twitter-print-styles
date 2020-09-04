@@ -92,13 +92,53 @@ function isMoreReplies(tweet) {
 /**
  * Get the timestamp element in a tweet.
  *
+ * Assumes that Twitter will always show time in a `#:#` format,
+ * followed by a middle dot `·` character.
+ *
  * @param  {Element}  tweet
  * @return {Boolean}
  */
 function getTimestampElement(tweet) {
   return Array.from(tweet.querySelectorAll('*'))
-    .filter((el) => el.textContent.trim().match(/^\d+:\d+ (A|P)M\b/) && el.children.length <= 0)
+    .filter((el) => el.textContent.trim().match(/\b\d+:\d+\b.*·/) && el.children.length <= 0)
     .pop();
+}
+
+/**
+ * Get all CSS from all stylesheets in a document.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/StyleSheetList
+ * @param  {Element}  doc
+ * @return {Boolean}
+ */
+function getAllCSS(doc = document) {
+  return [...doc.styleSheets]
+    .map(styleSheet => {
+      try {
+        return [...styleSheet.cssRules]
+          .map(rule => rule.cssText)
+          .join('');
+      } catch (e) {
+        console.log('Access to stylesheet %s is denied. Ignoring...', styleSheet.href);
+      }
+    })
+    .filter(Boolean)
+    .join('\n');
+}
+
+/**
+ * Shorten a string to a maximum number of characters,
+ * without cutting off a word.
+ *
+ * @see https://stackoverflow.com/a/57044767/1786459
+ * @param  {String}  str
+ * @param  {Number}  max
+ * @return {String}
+ */
+function shorten(str, max = 100) {
+  return str && str.length > max
+    ? str.slice(0, max).split(' ').slice(0, -1).join(' ')
+    : str;
 }
 
 // ------------------------------
@@ -137,7 +177,7 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
   // Get the timeline.
   // NOTE: While several views have "Timelines", this is
   // only expected to work on _Tweets_ & _Threads_.
-  const timeline = document.querySelector('[aria-label*="Timeline"]');
+  const timeline = document.querySelector('[data-testid="primaryColumn"] [role="region"] > div');
 
   if (!timeline) {
     console.log('Could not find Twitter timeline.');
@@ -199,6 +239,12 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
     // Scroll tweet to the top of the screen (to trigger Twitter's "load more" action).
     tweet.scrollIntoView(true);
 
+    // Wait 50ms per tweet to help reduce the risk of hitting Twitter's rate limits.
+    // 900 requests per 15 minutes = 1 request per second, and if you go too fast...
+    // "Sorry, you are rate limited. Please wait a few moments then try again."
+    // @see https://developer.twitter.com/en/docs/twitter-api/rate-limits
+    await (new Promise((resolve) => setTimeout(resolve, 50)));
+
     // Wait until next tweet loads.
     const timeout = Date.now();
 
@@ -216,9 +262,9 @@ We're incredibly sorry for the inconvenience.
 
 A few things to double check before trying again:
 
-- Is your internet connection still working?
-- Have you tried refreshing the page?
-- Are you trying to print something other than a "Tweet" or "Thread"?
+1. Is your internet connection still working? It's a simple thing, but always good to double check.
+2. Are you trying to print something other than a "Tweet" or "Thread"? We only support "conversation timelines", so if you're Twitter Print Styles on, say, the Home screen you may run into issues.
+3. Did you get a "Sorry, you are rate limited" warning? Twitter limits you to 900 requests every 15 minutes, so you may just need to wait it out. (This can happen after printing a few long threads).
 
 If you've confirmed all these things and are still seeing this error message, please open an issue in our GitHub repo:
 
@@ -269,21 +315,31 @@ https://github.com/tannerhodges/chrome-twitter-print-styles/issues`);
 
   console.log('PRINT');
 
-  // Create a duplicate timeline with all of the tweets together,
-  // then hide the standard app so we can print everything at once.
-  const duplicate = document.createElement('div');
-  duplicate.id = 'twitter-print-styles';
-  duplicate.innerHTML = printHTML;
-  timeline.insertBefore(duplicate, container);
-  container.style.display = 'none';
+  // Copy the Twitter timeline into a new window.
+  const clone = document.querySelector('[data-testid="primaryColumn"]').cloneNode(true);
+  clone.querySelector('[data-testid="primaryColumn"] [role="region"] > div').innerHTML = `<div>${printHTML}</div>`;
+
+  const winHtml = `<!DOCTYPE html><html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+      <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E %3Cstyle%3E@media (prefers-color-scheme: dark) %7B path %7B fill: %23fff; %7D %7D%3C/style%3E %3Cpath d='M150 0a150 150 0 1 0 150 150A150 150 0 0 0 150 0zm70.013 114.075c.075 1.5.075 3.075.075 4.65 0 47.775-36.375 102.9-102.9 102.9a100.76 100.76 0 0 1-55.275-16.35 65.763 65.763 0 0 0 8.625.525 72.7 72.7 0 0 0 44.925-15.45 36.11 36.11 0 0 1-33.75-25.125 34.528 34.528 0 0 0 6.825.675 36.052 36.052 0 0 0 9.525-1.275 36.2 36.2 0 0 1-29.026-35.475v-.45a35.525 35.525 0 0 0 16.35 4.5 36.148 36.148 0 0 1-11.25-48.225 102.6 102.6 0 0 0 74.55 37.8 33.143 33.143 0 0 1-.975-8.25 36.186 36.186 0 0 1 62.55-24.75A73.234 73.234 0 0 0 233.212 81a36.144 36.144 0 0 1-15.9 20.025 73.4 73.4 0 0 0 20.775-5.7 74.091 74.091 0 0 1-18.074 18.75z'%3E%3C/path%3E %3C/svg%3E">
+      <title>${shorten(document.title, 200)}</title>
+      <style>${getAllCSS(document)}</style>
+      <style>/* STYLES */</style>
+    </head>
+    <body id="twitter-print-styles">
+      ${clone.outerHTML}
+    </body>
+  </html>`;
+
+  const winUrl = URL.createObjectURL(new Blob([winHtml], { type: 'text/html' }));
+
+  const win = window.open(winUrl);
 
   // Wait one more time, just to be sure _all_ our media is ready.
-  await mediaLoaded(duplicate);
+  await mediaLoaded(win.document.querySelector('body'));
 
   // Annnd print!
-  window.print();
-
-  // Once that's done, revert back so we don't break the app.
-  container.style.display = '';
-  timeline.removeChild(duplicate);
+  win.print();
 });
