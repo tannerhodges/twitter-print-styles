@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 2.1.0 - 2020-08-31
+
+### Added
+
+- 👷‍♂️ Build Process FTW.
+
+### Changed
+
+- ✂️ Shorten document title below max filename length.
+- 🖼 Open timeline in a separate window.
+- 📷 Adjust media sizing to better fit within the page.
+- 🏎 Add 50ms delay to help reduce risk of [rate limits](https://developer.twitter.com/en/docs/twitter-api/rate-limits).
+
+### Fixed
+
+- 🔥 Fix unstable timeline selector.
+- 🙈 Fix background images not showing up on print.
+- ⏰ Fix timestamp element not matching in other languages.
+
 ## 2.0.0 - 2020-08-31
 
 ### Changed
