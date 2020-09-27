@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Renamed repo to `twitter-print-styles`.
+- Filled in logo white so it's easier to see in dark mode.
 
 ## [2.1.0] - 2020-09-03
 
