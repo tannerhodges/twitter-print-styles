@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Renamed repo to `twitter-print-styles`.
+
 ## [2.1.0] - 2020-09-03
 
 ### Added
@@ -46,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automatically print when replies have finished loading.
 - Hide promoted tweets.
 
-[Unreleased]: https://github.com/tannerhodges/chrome-twitter-print-styles/compare/v2.1.0...HEAD
-[2.1.0]: https://github.com/tannerhodges/chrome-twitter-print-styles/compare/v2.0.0...v2.1.0
-[2.0.0]: https://github.com/tannerhodges/chrome-twitter-print-styles/compare/v1.0.0...v2.0.0
-[1.0.0]: https://github.com/tannerhodges/chrome-twitter-print-styles/releases/tag/v1.0.0
+[Unreleased]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.0.0...v2.1.0
+[2.0.0]: https://github.com/tannerhodges/twitter-print-styles/compare/v1.0.0...v2.0.0
+[1.0.0]: https://github.com/tannerhodges/twitter-print-styles/releases/tag/v1.0.0

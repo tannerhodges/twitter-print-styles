@@ -268,7 +268,7 @@ A few things to double check before trying again:
 
 If you've confirmed all these things and are still seeing this error message, please open an issue in our GitHub repo:
 
-https://github.com/tannerhodges/chrome-twitter-print-styles/issues`);
+https://github.com/tannerhodges/twitter-print-styles/issues`);
         error = true;
         resolve(false);
         return;

@@ -57,7 +57,7 @@ exports.js = js;
  */
 function zipTask() {
   return src('dist/*')
-    .pipe(zip('chrome-twitter-print-styles.zip'))
+    .pipe(zip('twitter-print-styles.zip'))
     .pipe(dest('./'));
 }
 exports.zip = zipTask;

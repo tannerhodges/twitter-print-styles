@@ -4,7 +4,7 @@ Chrome extension for adding simple print styles to save Twitter threads as PDFs.
 
 👉 [Download from the Chrome Web Store](https://chrome.google.com/webstore/detail/twitter-print-styles/bepilablapiogeghmjiopiaoikgdcgjo).
 
-![](./screenshots/chrome-twitter-print-styles-v2-example.png)
+![](./screenshots/twitter-print-styles-v2-example.png)
 
 ## ⭐️ Features
 
