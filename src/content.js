@@ -46,16 +46,6 @@ function mediaLoaded(el) {
 }
 
 /**
- * A tweet is still loading if it has a progress bar element.
- *
- * @param  {Element}  tweet
- * @return {Boolean}
- */
-function isLoading(tweet) {
-  return tweet.querySelector('[role="progressbar"]');
-}
-
-/**
  * The first tweet is at the very top of the timeline.
  *
  * @param  {Element}  tweet
@@ -276,11 +266,6 @@ https://github.com/tannerhodges/twitter-print-styles/issues`);
 
       if (!nextTweet) {
         console.log('Tweet not found.', tweet);
-        return;
-      }
-
-      if (isLoading(nextTweet)) {
-        console.log('Loading...');
         return;
       }
 
