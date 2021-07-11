@@ -243,10 +243,10 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
 
       console.log('Finding next tweet...');
 
-      // If we fail to find a tweet within 30 seconds, something's probably gone wrong.
+      // If we fail to find a tweet within 10 seconds, something's probably gone wrong.
       // Assume the worst and abort.
-      if (Date.now() - timeout > 30000) {
-        alert(`😩 Yikes! We've gotten stuck searching for a specific tweet and haven't found anything in over 30 seconds.
+      if (Date.now() - timeout > 10000) {
+        alert(`😩 Yikes! We've gotten stuck searching for a specific tweet and haven't found anything in over 10 seconds.
 
 We're incredibly sorry for the inconvenience.
 
