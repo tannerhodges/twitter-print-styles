@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- 🤖 Update npm dependencies.
+
 ## [2.1.2] - 2021-07-10
 
 ### Changed
@@ -20,8 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.1.1] - 2020-09-26
 
-- Renamed repo to `twitter-print-styles`.
-- Filled in logo white so it's easier to see in dark mode.
+- 📛 Renamed repo to `twitter-print-styles`.
+- 🌚 Filled in logo white so it's easier to see in dark mode.
 
 ## [2.1.0] - 2020-09-03
 
