@@ -31,13 +31,9 @@ function mediaLoaded(el) {
 
   // Create promises for every file that hasn't finished loading yet.
   const promises = media.filter((m) => {
-    return m.tagName === 'VIDEO'
-      ? m.readyState !== 4
-      : !(m.complete && m.naturalWidth);
+    return m.tagName === 'VIDEO' ? m.readyState !== 4 : !m.complete;
   }).map((m) => new Promise((resolve) => {
-    m[m.tagName === 'VIDEO'
-      ? 'onloadeddata'
-      : 'onload'] = resolve;
+    m[m.tagName === 'VIDEO' ? 'onloadeddata' : 'onload'] = resolve;
     m.onerror = resolve;
   }));
 
