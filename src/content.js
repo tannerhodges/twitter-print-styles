@@ -127,6 +127,27 @@ function shorten(str, max = 100) {
     : str;
 }
 
+/**
+ * Sanitize title for safe file names.
+ *
+ * @see https://stackoverflow.com/a/57044767/1786459
+ * @param  {String}  str
+ * @return {String}
+ */
+function sanitizeTitle(str) {
+  // Ignore empty values.
+  if (!str) {
+    return '';
+  }
+
+  // Convert all non-word and non-space characters with hyphens.
+  // Exceptions: Preserve `@` for Twitter handles, and then basic punctuation.
+  str = str.replace(/[^\w\s@.]/g, '-');
+
+  // Return title with a maximum of 200 characters.
+  return shorten(str, 200);
+}
+
 // ------------------------------
 // PRINT TWEETS
 // ------------------------------
@@ -305,7 +326,7 @@ https://github.com/tannerhodges/twitter-print-styles/issues`);
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
       <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E %3Cstyle%3E@media (prefers-color-scheme: dark) %7B path %7B fill: %23fff; %7D %7D%3C/style%3E %3Cpath d='M150 0a150 150 0 1 0 150 150A150 150 0 0 0 150 0zm70.013 114.075c.075 1.5.075 3.075.075 4.65 0 47.775-36.375 102.9-102.9 102.9a100.76 100.76 0 0 1-55.275-16.35 65.763 65.763 0 0 0 8.625.525 72.7 72.7 0 0 0 44.925-15.45 36.11 36.11 0 0 1-33.75-25.125 34.528 34.528 0 0 0 6.825.675 36.052 36.052 0 0 0 9.525-1.275 36.2 36.2 0 0 1-29.026-35.475v-.45a35.525 35.525 0 0 0 16.35 4.5 36.148 36.148 0 0 1-11.25-48.225 102.6 102.6 0 0 0 74.55 37.8 33.143 33.143 0 0 1-.975-8.25 36.186 36.186 0 0 1 62.55-24.75A73.234 73.234 0 0 0 233.212 81a36.144 36.144 0 0 1-15.9 20.025 73.4 73.4 0 0 0 20.775-5.7 74.091 74.091 0 0 1-18.074 18.75z'%3E%3C/path%3E %3C/svg%3E">
-      <title>${shorten(document.title, 200)}</title>
+      <title>${sanitizeTitle(document.title)}</title>
       <style>${getAllCSS(document)}</style>
       <style>/* STYLES */</style>
     </head>
