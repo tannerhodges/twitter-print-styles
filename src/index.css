@@ -55,16 +55,6 @@ img {
   opacity: 1 !important;
 }
 
-/* - Break everything out of their `position: absolute;` containers. */
-[data-testid="tweet"] * {
-  position: static !important;
-}
-
-/* - Hide all the placeholder aspect ratio elements. */
-[data-testid="tweet"] [style*="padding-bottom"] {
-  display: none !important;
-}
-
 /* - Ensure images are visible. */
 [data-testid="tweet"] img {
   opacity: 1 !important;
