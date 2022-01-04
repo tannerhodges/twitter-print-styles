@@ -4,19 +4,19 @@
  * 1. Hide main menu.
  * 2. Hide sidebar.
  * 3. Hide modals/tooltips/popovers.
- * 4. Center main content.
- * 5. Make "Thread" header non-sticky.
- * 6. Expand tweet images.
- * 7. Hide extra video placeholders.
- * 8. Reset video transformations.
- * 9. Fix icon alignment for reply/retweet/like buttons.
- * 10, Make infinite scrolling timeline static again.
- * 11. Normalize tweet borders
- * 12. Hide everything after the first set timeline content.
- * 13. Add some breathing room to make tweets more readable.
- * 14. Make sure nothing animates during print.
- * 15. Try to fit media within the page.
- * 16. Revert Dark Mode.
+ * 4. Make "Thread" header non-sticky.
+ * 5. Expand tweet images.
+ * 6. Hide extra video placeholders.
+ * 7. Reset video transformations.
+ * 8. Fix icon alignment for reply/retweet/like buttons.
+ * 9, Make infinite scrolling timeline static again.
+ * 10. Normalize tweet borders
+ * 11. Hide everything after the first set timeline content.
+ * 12. Add some breathing room to make tweets more readable.
+ * 13. Make sure nothing animates during print.
+ * 14. Try to fit media within the page.
+ * 15. Revert Dark Mode.
+ * 16. Fix poll styles.
  */
 
 /* BEGIN */
@@ -36,22 +36,17 @@ header[role="banner"] {
   display: none !important;
 }
 
-/* 4. Center main content. */
-/* main > :first-child {
-  width: 100% !important;
-} */
-
 [data-testid="primaryColumn"] {
   margin-right: auto !important;
   margin-left: auto !important;
 }
 
-/* 5. Make "Thread" header non-sticky. */
+/* 4. Make "Thread" header non-sticky. */
 [data-testid="primaryColumn"] > :first-child > :first-child {
   position: relative !important;
 }
 
-/* 6. Expand tweet images. */
+/* 5. Expand tweet images. */
 /* - Make sure inline images display instead of background images. */
 [style*="background-image: url("] {
   display: none !important;
@@ -59,16 +54,6 @@ header[role="banner"] {
 
 img {
   opacity: 1 !important;
-}
-
-/* - Break everything out of their `position: absolute;` containers. */
-[data-testid="tweet"] * {
-  position: static !important;
-}
-
-/* - Hide all the placeholder aspect ratio elements. */
-[data-testid="tweet"] [style*="padding-bottom"] {
-  display: none !important;
 }
 
 /* - Ensure images are visible. */
@@ -81,22 +66,22 @@ img {
   margin: 0 !important;
 }
 
-/* 7. Hide extra video placeholders. */
+/* 6. Hide extra video placeholders. */
 [data-testid="videoPlayer"] [role="button"] {
   display: none !important;
 }
 
-/* 8. Reset video transformations. */
+/* 7. Reset video transformations. */
 [data-testid="videoPlayer"] video {
   transform: none !important;
 }
 
-/* 9. Fix icon alignment for reply/retweet/like buttons. */
+/* 8. Fix icon alignment for reply/retweet/like buttons. */
 [data-testid="tweet"] [role="group"]:last-child [role="button"] > :first-child > :first-child > :first-child {
   display: none !important;
 }
 
-/* 10, Make infinite scrolling timeline static again. */
+/* 9, Make infinite scrolling timeline static again. */
 [data-testid="primaryColumn"] [role="region"] > div > :first-child {
   min-height: 0 !important;
 }
@@ -106,7 +91,7 @@ img {
   transform: none !important;
 }
 
-/* 11. Normalize tweet borders */
+/* 10. Normalize tweet borders */
 [data-testid="primaryColumn"] > :first-child {
   border-top: 1px solid black !important;
 }
@@ -116,25 +101,25 @@ img {
   border-bottom: 1px solid black !important;
 }
 
-/* 12. Hide everything after the first set timeline content. */
+/* 11. Hide everything after the first set timeline content. */
 /* NOTE: This allows us to easily swap out our duplicate and the original content. */
 [data-testid="primaryColumn"] [role="region"] > div > :first-child ~ * {
   display: none !important;
 }
 
-/* 13. Add some breathing room to make tweets more readable. */
+/* 12. Add some breathing room to make tweets more readable. */
 article {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
 }
 
-/* 14. Make sure nothing animates during print. */
+/* 13. Make sure nothing animates during print. */
 * {
   transition: none !important;
   animation: none !important;
 }
 
-/* 15. Try to fit media within the page. */
+/* 14. Try to fit media within the page. */
 video,
 img {
   max-height: 50vh;
@@ -142,10 +127,18 @@ img {
   page-break-inside: avoid;
 }
 
-/* 16. Revert Dark Mode. */
+/* 15. Revert Dark Mode. */
+/* - Remove background colors from all non-links. */
+/* - Make all text black. */
 *:not(a) {
   background-color: transparent !important;
   color: black !important;
+}
+
+/* 16. Fix poll styles. */
+/* - Make all bars light gray. */
+[data-testid="cardPoll"] [style*="width: "] {
+  background-color: lightgray !important;
 }
 
 /* END */
