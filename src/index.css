@@ -16,6 +16,7 @@
  * 13. Make sure nothing animates during print.
  * 14. Try to fit media within the page.
  * 15. Revert Dark Mode.
+ * 16. Fix poll styles.
  */
 
 /* BEGIN */
@@ -127,9 +128,17 @@ img {
 }
 
 /* 15. Revert Dark Mode. */
+/* - Remove background colors from all non-links. */
+/* - Make all text black. */
 *:not(a) {
   background-color: transparent !important;
   color: black !important;
+}
+
+/* 16. Fix poll styles. */
+/* - Make all bars light gray. */
+[data-testid="cardPoll"] [style*="width: "] {
+  background-color: lightgray !important;
 }
 
 /* END */
