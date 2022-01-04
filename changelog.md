@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.4] - 2022-01-03
+
+### Fixed
+
+- 🔥 Fix missing profile pictures.
+- 📊 Fix polls not rendering correctly.
+- 🪗 Fix squished images.
+- 😜 Fix emojis causing issues with PDF filenames.
+
 ## [2.1.3] - 2021-11-07
 
 ### Added
@@ -76,7 +85,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automatically print when replies have finished loading.
 - Hide promoted tweets.
 
-[Unreleased]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.3...HEAD
+[Unreleased]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.4...HEAD
+[2.1.4]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.3...v2.1.4
 [2.1.3]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.2...v2.1.3
 [2.1.2]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.0...v2.1.1
