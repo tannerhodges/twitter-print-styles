@@ -209,6 +209,10 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
   // Since Twitter only shows a few tweets in the DOM at a time, we need to
   // cache them in a variable so we can print them all together.
   let printHTML = '';
+  do {
+      window.scrollBy(0, -1000);
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    } while(document.querySelector("html")?.scrollTop  > 0 )
 
   do {
     // Ignore missing tweets.
@@ -283,7 +287,13 @@ https://github.com/tannerhodges/twitter-print-styles/issues`);
 
       if (!nextTweet) {
         console.log('Tweet not found.', tweet);
-        return;
+        // we try one more time to forcefully scroll down, because of twitters lovely render magic
+        window.scrollBy(0,1000)
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        nextTweet = tweet.nextElementSibling;
+        if (!nextTweet) {
+          return;
+        }
       }
 
       if (isLastTweet(nextTweet)) {
