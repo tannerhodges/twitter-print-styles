@@ -196,7 +196,7 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
   keepRunning = true;
 
   // Find the tweets.
-  const container = timeline.firstElementChild;
+  const container = timeline.querySelector('[style*="position: relative"]');
   console.log('[twitter-print-styles] container =', container);
 
   // Make sure we're actually on the first one.
