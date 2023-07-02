@@ -105,7 +105,7 @@ function getAllCSS(doc = document) {
           .map(rule => rule.cssText)
           .join('');
       } catch (e) {
-        console.log('Access to stylesheet %s is denied. Ignoring...', styleSheet.href);
+        console.log('[twitter-print-styles] Access to stylesheet %s is denied. Ignoring...', styleSheet.href);
       }
     })
     .filter(Boolean)
@@ -164,7 +164,7 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 
   // Multiple clicks cancels out any running tasks.
   if (running) {
-    console.log('Cancelling current task...');
+    console.log('[twitter-print-styles] Cancelling current task...');
     keepRunning = false;
     return;
   }
@@ -188,7 +188,7 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
   console.log('[twitter-print-styles] = timeline', timeline);
 
   if (!timeline) {
-    console.log('Could not find Twitter timeline.');
+    console.log('[twitter-print-styles] Could not find Twitter timeline.');
     return;
   }
 
@@ -244,7 +244,7 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
     // Increment tweet count.
     count += 1;
 
-    console.log(`Tweet #${count}`, tweet);
+    console.log(`[twitter-print-styles] Tweet #${count}`, tweet);
 
     // Scroll tweet to the top of the screen (to trigger Twitter's "load more" action).
     tweet.scrollIntoView(true);
@@ -260,8 +260,7 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
 
     tweet = await waitUntil(async (resolve) => {
       const nextTweet = tweet.nextElementSibling;
-
-      console.log('Finding next tweet...');
+      console.log('[twitter-print-styles] Finding next tweet...', nextTweet);
 
       // If we fail to find a tweet within 10 seconds, something's probably gone wrong.
       // Assume the worst and abort.
@@ -285,18 +284,18 @@ https://github.com/tannerhodges/twitter-print-styles/issues`);
       }
 
       if (!nextTweet) {
-        console.log('Tweet not found.', tweet);
+        console.log('[twitter-print-styles] Tweet not found.', tweet);
         return;
       }
 
       if (isLastTweet(nextTweet)) {
-        console.log('--- THE END ---');
+        console.log('[twitter-print-styles] --- THE END ---');
         resolve(false);
         return;
       }
 
       if (isMoreReplies(nextTweet)) {
-        console.log('Loading more replies...');
+        console.log('[twitter-print-styles] Loading more replies...');
         const moreReplies = nextTweet.querySelector('[role="button"]');
         moreReplies.click();
         return;
@@ -318,7 +317,7 @@ https://github.com/tannerhodges/twitter-print-styles/issues`);
     return;
   }
 
-  console.log('PRINT');
+  console.log('[twitter-print-styles] PRINT');
 
   // Copy the Twitter timeline into a new window.
   const clone = document.querySelector('[data-testid="primaryColumn"]').cloneNode(true);
