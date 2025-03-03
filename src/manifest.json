@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Twitter Print Styles",
   "version": "3.0.0",
-  "description": "Simple print styles for saving Twitter/X threads as PDFs.",
+  "description": "Simple print styles for saving Twitter threads as PDFs.",
   "icons": {
     "16": "icon-16.png",
     "48": "icon-48.png",
