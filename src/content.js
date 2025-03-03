@@ -185,12 +185,12 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
   // NOTE: While several views have "Timelines", this is
   // only expected to work on _Tweets_ & _Threads_.
   const timeline = document.querySelector('[data-testid="primaryColumn"] [role="region"] > div');
-console.log('[twitter-print-styles] = timeline', timeline);
+  console.log('[twitter-print-styles] = timeline', timeline);
 
-if (!timeline) {
-  console.log('[twitter-print-styles] Could not find timeline.');
-  return;
-}
+  if (!timeline) {
+    console.log('[twitter-print-styles] Could not find timeline.');
+    return;
+  }
 
   running = true;
   keepRunning = true;
