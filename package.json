@@ -1,11 +1,12 @@
 {
   "name": "twitter-print-styles",
-  "version": "2.1.5",
-  "description": "Chrome extension for adding simple print styles to save Twitter threads as PDFs.",
+  "version": "3.0.0",
+  "description": "Chrome extension for adding simple print styles to save Twitter/X threads as PDFs.",
   "keywords": [
     "chrome",
     "extension",
     "twitter",
+    "x",
     "print",
     "css"
   ],

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2025-03-03
+
+### Breaking Changes
+
+- 🔄 Upgraded from Manifest v2 to Manifest v3 to comply with Chrome's requirements.
+- ✨ Added support for x.com domain following Twitter's rebranding.
+
 ## [2.1.5] - 2023-07-01
 
 ### Fixed
@@ -91,7 +98,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automatically print when replies have finished loading.
 - Hide promoted tweets.
 
-[Unreleased]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.5...HEAD
+[Unreleased]: https://github.com/tannerhodges/twitter-print-styles/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.5...v3.0.0
 [2.1.5]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.4...v2.1.5
 [2.1.4]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.3...v2.1.4
 [2.1.3]: https://github.com/tannerhodges/twitter-print-styles/compare/v2.1.2...v2.1.3

@@ -171,7 +171,7 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
 
   // Disable load script when print emulation is turned on.
   if (window.matchMedia('print').matches) {
-    alert(`🚨 Whoops! Don't run Twitter Print Styles with print emulation turned on, otherwise it'll break the Twitter app.
+    alert(`🚨 Whoops! Don't run Twitter Print Styles with print emulation turned on, otherwise it'll break the Twitter/X app.
 
 Please turn print emulation off, then try again.
 
@@ -185,12 +185,12 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
   // NOTE: While several views have "Timelines", this is
   // only expected to work on _Tweets_ & _Threads_.
   const timeline = document.querySelector('[data-testid="primaryColumn"] [role="region"] > div');
-  console.log('[twitter-print-styles] = timeline', timeline);
+console.log('[twitter-print-styles] = timeline', timeline);
 
-  if (!timeline) {
-    console.log('[twitter-print-styles] Could not find Twitter timeline.');
-    return;
-  }
+if (!timeline) {
+  console.log('[twitter-print-styles] Could not find timeline.');
+  return;
+}
 
   running = true;
   keepRunning = true;
@@ -273,7 +273,7 @@ A few things to double check before trying again:
 
 1. Is your internet connection still working? It's a simple thing, but always good to double check.
 2. Are you trying to print something other than a "Tweet" or "Thread"? We only support "conversation timelines", so if you're Twitter Print Styles on, say, the Home screen you may run into issues.
-3. Did you get a "Sorry, you are rate limited" warning? Twitter limits you to 900 requests every 15 minutes, so you may just need to wait it out. (This can happen after printing a few long threads).
+3. Did you get a "Sorry, you are rate limited" warning? Twitter/X limits you to 900 requests every 15 minutes, so you may just need to wait it out. (This can happen after printing a few long threads).
 
 If you've confirmed all these things and are still seeing this error message, please open an issue in our GitHub repo:
 
