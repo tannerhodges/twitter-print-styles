@@ -188,7 +188,7 @@ Dev Tools > More Tools > Rendering > Emulate CSS media type
   console.log('[twitter-print-styles] = timeline', timeline);
 
   if (!timeline) {
-    console.log('[twitter-print-styles] Could not find Twitter timeline.');
+    console.log('[twitter-print-styles] Could not find timeline.');
     return;
   }
 
