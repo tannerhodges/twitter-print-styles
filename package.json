@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/tannerhodges/twitter-print-styles#readme",
   "dependencies": {
-    "eslint": "^7.32.0",
+    "eslint": "^9.26.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
     "gulp": "^4.0.2",
